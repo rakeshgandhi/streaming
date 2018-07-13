@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <link href="//vjs.zencdn.net/5.4.6/video-js.min.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script>
+  </head>
+  <body>
+    <div id="video_overlays" style="position: relative; float: left; width: auto; min-height: 10px; background-color: #f1e8e8;z-index: 300000;">
+      Show ads here!
+    </div>
+    <video id="video" class="video-js vjs-default-skin"
+      controls preload="auto" width="640" height="264"
+      data-setup='{"example_option":true}'>
+     <source src="https://perform-content.airtel.tv//010718-EN-PERFORM-CROvDEN-5THINGS-RV-2_1530486931115_1726.mp4" type="video/mp4" />
+     <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+    </video>
+    <script type="text/javascript">
+        var options = {
+          controlBar: {
+            volumeMenuButton: {
+              inline: false,
+              vertical: true
+            }
+          }
+        };
+        var myPlayer = videojs('video', options);
+        document.addEventListener('keydown', (event) => {
+          var keyCode = event.keyCode;
+          switch (keyCode) {
+            case 32:
+              if (!myPlayer.paused()) {
+                myPlayer.pause();
+              } else {
+                myPlayer.play();
+              }
+              break;
+            case 37:
+              var whereYouAt = myPlayer.currentTime();
+              myPlayer.currentTime(whereYouAt - 5);
+              break;
+            case 39:
+            var whereYouAt = myPlayer.currentTime();
+              myPlayer.currentTime(whereYouAt + 5);
+              break;
+            case 38:
+              var howLoudIsIt = myPlayer.volume();
+              myPlayer.volume(howLoudIsIt + 0.1);
+              break;
+            case 40:
+              var howLoudIsIt = myPlayer.volume();
+              myPlayer.volume(howLoudIsIt - 0.1);
+              break;
+          }
+        });
+    </script>
+    <p>Use Up/Down arrow keys to control volume</p>
+    <p>Use Left/Right arrow keys to control seek bar position</p>
+    <p>Use spacebar to play/pause/resume media</p>
+  </body>
+</html>
